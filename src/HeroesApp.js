@@ -1,11 +1,8 @@
 import React from "react";
+import AppRouter from "./routers/AppRouter";
 
 const HeroesApp = () => {
-  return (
-    <div>
-      <p>Body</p>
-    </div>
-  );
+  return <AppRouter />;
 };
 
 export default HeroesApp;

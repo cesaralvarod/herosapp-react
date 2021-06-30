@@ -1,6 +1,6 @@
 import React from "react";
 
-const MarvelScreen = () => {
+const LoginScreen = () => {
   return (
     <div>
       <p>Body</p>
@@ -8,4 +8,4 @@ const MarvelScreen = () => {
   );
 };
 
-export default MarvelScreen;
+export default LoginScreen;
