@@ -1,45 +1,82 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, NavLink, useHistory } from "react-router-dom";
+import { AuthContext } from "../../auth/AuthContext";
+import { types } from "../../types/types";
 
 const Navbar = () => {
+  const history = useHistory();
+
+  const {
+    user: { name },
+    dispatch,
+  } = useContext(AuthContext);
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    dispatch({ type: types.logout });
+    history.replace("/login");
+  };
+
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarToggler"
+        aria-controls="navbarToggler"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+
       <Link className="navbar-brand" to="/">
-        Asociaciones
+        Heros App
       </Link>
 
-      <div className="navbar-collapse">
-        <div className="navbar-nav">
-          <NavLink
-            activeClassName="active"
-            className="nav-item nav-link"
-            exact
-            to="/marvel"
-          >
-            Marvel
-          </NavLink>
-
-          <NavLink
-            activeClassName="active"
-            className="nav-item nav-link"
-            exact
-            to="/dc"
-          >
-            DC
-          </NavLink>
-        </div>
-      </div>
-
-      <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul className="navbar-nav ml-auto">
-          <NavLink
-            activeClassName="active"
-            className="nav-item nav-link"
-            exact
-            to="/login"
-          >
-            Logout
-          </NavLink>
+      <div className="collapse navbar-collapse" id="navbarToggler">
+        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li className="nav-item active">
+            <NavLink
+              activeClassName="active"
+              className="nav-item nav-link"
+              exact
+              to="/marvel"
+            >
+              Marvel
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              activeClassName="active"
+              className="nav-item nav-link"
+              exact
+              to="/dc"
+            >
+              DC
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              activeClassName="active"
+              className="nav-item nav-link"
+              exact
+              to="/search"
+            >
+              Search
+            </NavLink>
+          </li>
+        </ul>
+        <ul className="navbar-nav mt-2" style={{ marginLeft: "auto" }}>
+          <li className="nav-item">
+            <span className="text-info nav-item nav-link">{name}</span>
+          </li>
+          <li className="nav-item">
+            <button className="btn nav-item nav-link" onClick={handleLogout}>
+              Logout
+            </button>
+          </li>
         </ul>
       </div>
     </nav>
