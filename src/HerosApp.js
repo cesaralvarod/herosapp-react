@@ -11,7 +11,7 @@ const init = () => {
   );
 };
 
-const HeroesApp = () => {
+const HerosApp = () => {
   const [user, dispatch] = useReducer(authReducer, {}, init);
 
   useEffect(() => {
@@ -25,4 +25,4 @@ const HeroesApp = () => {
   );
 };
 
-export default HeroesApp;
+export default HerosApp;
