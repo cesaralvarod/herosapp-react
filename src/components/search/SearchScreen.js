@@ -7,6 +7,7 @@ import { getHerosByName } from "../../selectors/getHerosByName";
 
 const SearchScreen = ({ history }) => {
   const location = useLocation();
+
   const { q = "" } = queryString.parse(location.search);
 
   const [formValues, handleInputChange] = useForm({ search: "" });
